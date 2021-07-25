@@ -95,16 +95,57 @@ so here we need to binding the method that which one we want to bind with the de
 ``` 
 Thread T1 = new Thread(Method_1); // now pass that method as a deligate, this is called implicitly bind
 T1.Start():
-```
+// this is mostly used by developers
+``` 
 OR 
 ```
 ThreadStart Ts1 = new ShreadStart(Method_1); // bind the method with the same type of deligate
+
 Thread T1 = new Thread(Ts1); // now pass that deligate
 T1.Start():
 ``` 
-both codes working as same 
+or
 
-<details><summary>CLICK ME</summary>
+```
+ThreadStart Ts1 = deligate(){Method_1(); };
+
+Thread T1 = new Thread(Ts1); // now pass that deligate
+T1.Start():
+
+// this method mostly use in anonymous methods: here we don't need to write the method name: What is anonymous methods ans: the methods that dont have any name or we also directly write our code in it.
+
+// anonymous examples:  like that 
+ThreadStart Ts1 = deligate(){  
+  for (int i = 0; i <= 15; i++)
+  {
+    Console.WriteLine("Line: " + i + " M 2");
+   } 
+};
+
+Thread T1 = new Thread(Ts1); // now pass that deligate
+T1.Start():
+```  
+OR 
+```
+ThreadStart Ts1 = () => Method_1();
+
+Thread T1 = new Thread(Ts1); // now pass that deligate
+T1.Start():
+
+Its also use for anonymous method
+// exmaple
+
+ThreadStart Ts1 = () =>  for (int i = 0; i <= 15; i++)
+  {
+    Console.WriteLine("Line: " + i + " M 2");
+  } ;
+
+Thread T1 = new Thread(Ts1); // now pass that deligate
+T1.Start():
+``` 
+
+all code will give same outout.  
+
 ```
 using System;
 using System.Threading;
